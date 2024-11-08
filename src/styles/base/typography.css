@@ -1,0 +1,13 @@
+body {
+  font-family: 'Inter Variable', sans-serif;
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 40px;
+  @apply text-black font-extrabold leading-none mb-8 col-span-full;
+}
+
+p:not(:last-of-type) {
+  @apply mb-5;
+}

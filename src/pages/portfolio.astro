@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Main.astro"
+
+const urlRequest =
+  "https://public-api.wordpress.com/wp/v2/sites/tylerrichardsdesigns.wordpress.com/posts?&_embed"
+const res = await fetch(urlRequest)
+const posts = await res.json()
+---
+
+<Layout title="Welcome to Astro.">
+  <div id="post-grid" class="container w-full grid gap-4">
+    {
+      posts.map(post => (
+        <article class="grid grid-rows-subgrid row-span-2 gap-y-0">
+          <div
+            class="w-full h-96 bg-cover bg-center"
+            style="background-image: url(${post['jetpack_featured_media_url']})"
+          />
+          <h2
+            set:html={post.title.rendered}
+            class="bg-black text-white py-4 px-12 flex items-center justify-center text-center"
+          />
+        </article>
+      ))
+    }
+  </div>
+</Layout>
+
+<style>
+  #post-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+</style>

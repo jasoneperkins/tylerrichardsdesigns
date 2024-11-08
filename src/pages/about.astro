@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Main.astro"
+
+import {Image} from "astro:assets"
+
+const urlRequest =
+  "https://public-api.wordpress.com/wp/v2/sites/tylerrichardsdesigns.wordpress.com/pages/1"
+const res = await fetch(urlRequest)
+const post = await res.json()
+console.log(post)
+
+import tylerRichardsImage from "../assets/images/tyler-richards.jpg"
+---
+
+<Layout title="Welcome to Astro.">
+  <div class="container gap-6 flex items-start">
+    <Image
+      src={tylerRichardsImage}
+      alt="Tyler Richards sitting in a car, wearing shades and a gray suit."
+      class="max-w-lg"
+    />
+    <div>
+      <h1 set:html={post.title.rendered} />
+      <Fragment set:html={post.content.rendered} />
+    </div>
+  </div>
+</Layout>

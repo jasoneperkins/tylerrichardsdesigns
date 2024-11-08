@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Main.astro"
+import Card from "../components/Card.astro"
+
+const urlRequest =
+  "https://public-api.wordpress.com/wp/v2/sites/tylerrichardsdesigns.wordpress.com/pages/58?&_embed"
+const res = await fetch(urlRequest)
+const page = await res.json()
+---
+
+<Layout title="Welcome to Astro.">
+  <div class="w-screen text-center">
+    <div
+      class="bg-cover bg-center"
+      style=`background-image: url(${page._embedded["wp:featuredmedia"]["0"].media_details.sizes.large.source_url}); height: 616px;`
+    >
+    </div>
+    <p
+      set:html={page.title.rendered}
+      class="py-12 text-center"
+      style="font-size:40px; font-weight:300;"
+    />
+    <a href="/about" class="bg-gray-light text-white font-bold py-4 px-16">
+      Get In Touch
+    </a>
+  </div>
+</Layout>
