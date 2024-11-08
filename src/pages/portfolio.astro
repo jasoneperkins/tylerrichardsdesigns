@@ -243,7 +243,7 @@ const posts = await res.json()
         <article class="grid grid-rows-subgrid row-span-2 gap-y-0">
           <div
             class="w-full h-96 bg-cover bg-center"
-            style="background-image: url(${post['jetpack_featured_media_url']})"
+            style=`background-image: url(${post['jetpack_featured_media_url']})`
           />
           <h2
             set:html={post.title.rendered}
